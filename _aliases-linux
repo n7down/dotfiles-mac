@@ -1,0 +1,2 @@
+# delete trash bin
+alias empty-trash="rm -rf ~/.local/share/Trash/files/*"

@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# analyze source (as)
+# run ctags and cscope
+echo -n "deleting old files... "
+rm -rf cscope.files cscope.in.out cscope.out cscope.po.out tags
+echo "done"
+echo -n "searching for all c/cpp files... "
+find . -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" -name "*.cc" > cscope.files
+echo "done"
+echo -n "executing cscope... "
+cscope -q -R -b -i cscope.files
+echo "done"
+echo -n "executing ctags... "
+ctags .
+echo "done"
