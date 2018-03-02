@@ -31,6 +31,14 @@ then
 	sh -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
 fi
 
+# install homebrew
+command -v brew >/dev/null 2>&1 || { echo >&2 "installing homebrew"; \
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
+
+# install brew things
+command -v ctags >/dev/null 2>&1 || { echo >&2 "installing ctags"; \
+	brew install ctags; }
+
 # install oh-my-zsh
 if [ ! -d $HOME/.oh-my-zsh ]
 then
@@ -55,8 +63,6 @@ done
 echo "installing oh-my-zsh themes"
 cp oh-my-zsh/themes/gitster.zsh-theme $HOME/.oh-my-zsh/themes/
 
-# run fc-cache
-echo "executing fc-cache"
-fc-cache
-
-echo "completed - please logout and log back in for setup to take full effect"
+mkdir -p $HOME/.bin
+ln -sf ${PWD}/bin/cs $HOME/.bin/cs
+ln -sf ${PWD}/bin/wea $HOME/.bin/wea
