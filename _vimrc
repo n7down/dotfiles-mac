@@ -43,7 +43,6 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 syntax on
-filetype plugin indent on
 set laststatus=2            " be iMproved, required
 set encoding=utf-8
 
