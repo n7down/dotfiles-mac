@@ -27,6 +27,9 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'leafgarland/typescript-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
