@@ -121,3 +121,5 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# disabled C-s
+stty -ixon
