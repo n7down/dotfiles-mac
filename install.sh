@@ -68,3 +68,5 @@ mkdir -p $HOME/.bin
 ln -sf ${PWD}/bin/cs $HOME/.bin/cs
 ln -sf ${PWD}/bin/wea $HOME/.bin/wea
 curl -o ~/.bin/tldr https://raw.githubusercontent.com/raylee/tldr/master/tldr
+curl https://cht.sh/:cht.sh > ~/.bin/cht
+chmod +x ~/.bin/cht
