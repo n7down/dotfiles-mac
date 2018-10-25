@@ -29,6 +29,7 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
