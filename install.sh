@@ -36,11 +36,16 @@ command -v brew >/dev/null 2>&1 || { echo >&2 "installing homebrew"; \
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
 
 # install brew things
-command -v ctags >/dev/null 2>&1 || { echo >&2 "installing ctags"; \
+command -v brew-things >/dev/null 2>&1 || { echo >&2 "installing brew things"; \
 	brew install ctags; \
 	brew install the_silver_searcher; \
 	brew cask install docker; \
 	brew cask install iterm; }
+
+# install fonts
+command -v fonts >/dev/null 2>&1 || { echo >&2 "installing fonts"; \
+	brew tap homebrew/cask-fonts; \
+	brew cask install font-source-code-pro-for-powerline; }
 
 # install oh-my-zsh
 if [ ! -d $HOME/.oh-my-zsh ]
@@ -66,6 +71,8 @@ done
 echo "installing oh-my-zsh themes"
 cp oh-my-zsh/themes/gitster.zsh-theme $HOME/.oh-my-zsh/themes/
 
+# install bin files
+echo "install files to bin folder"
 mkdir -p $HOME/.bin
 ln -sf ${PWD}/bin/cs $HOME/.bin/cs
 ln -sf ${PWD}/bin/wea $HOME/.bin/wea
