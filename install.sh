@@ -38,7 +38,9 @@ command -v brew >/dev/null 2>&1 || { echo >&2 "installing homebrew"; \
 # install brew things
 command -v ctags >/dev/null 2>&1 || { echo >&2 "installing ctags"; \
 	brew install ctags; \
-	brew install the_silver_searcher; }
+	brew install the_silver_searcher; \
+	brew cask install docker; \
+	brew cask install iterm; }
 
 # install oh-my-zsh
 if [ ! -d $HOME/.oh-my-zsh ]

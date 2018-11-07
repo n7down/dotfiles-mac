@@ -26,10 +26,9 @@ Plugin 'moll/vim-bbye'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
-
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'fatih/vim-go'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,6 +54,9 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 
+" for go
+set autowrite
+
 " nerdtree
 autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -66,7 +68,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-map <C-t> :NERDTreeToggle<CR>
+map <C-m> :NERDTreeToggle<CR>
 
 " hemisu
 set background=dark
@@ -222,7 +224,7 @@ au BufWinLeave,BufWritePost,BufLeave * if expand("%") != "" && &buftype == "" | 
 au BufWinEnter,BufReadPost,BufEnter * if expand("%") != "" && &buftype == "" | silent loadview | endif
 
 " snips
-let g:UltiSnipsExpandTrigger="<C-z>"
+let g:UltiSnipsExpandTrigger="<C-d>"
 let g:UltiSnipsJumpForwardTrigger="<C-s>"
 let g:UltiSnipsJumpBackwardTrigger="<C-x>"
 
@@ -269,34 +271,40 @@ if has("cscope")
 endif
 
 " check https://github.com/chazy/cscope_maps/blob/master/plugin/cscope_maps.vim for mappings
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-\>d :cs find d<C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-\>d :cs find d<C-R>=expand("<cword>")<CR><CR>
 
-nmap <C-]>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-]>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-]>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-]>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-]>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
-nmap <C-]><C-]>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]><C-]>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]><C-]>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]><C-]>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]><C-]>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-]><C-]>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-]><C-]>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-]><C-]>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]><C-]>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]><C-]>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]><C-]>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]><C-]>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]><C-]>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-]><C-]>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-]><C-]>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-]><C-]>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 " ag
 if executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
+
+" disable ctrl-z
+nnoremap <c-z> <nop>
+
+" insert closing brace
+inoremap {<CR> {<CR>}<C-o>O
