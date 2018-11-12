@@ -1,13 +1,9 @@
 set nocompatible
-filetype off                  " required
+filetype off
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -29,33 +25,22 @@ Plugin 'majutsushi/tagbar'
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
+call vundle#end()
+filetype plugin indent on 
 syntax on
-set laststatus=2            " be iMproved, required
+set laststatus=2    
 set encoding=utf-8
+
+" for go
+set autowrite
 
 set autoindent
 set noexpandtab
 set tabstop=4
 set shiftwidth=4
-
-" for go
-set autowrite
 
 " nerdtree
 autocmd vimenter * NERDTree
@@ -74,7 +59,15 @@ map <C-m> :NERDTreeToggle<CR>
 set background=dark
 colorscheme hemisu
 
+" colors
+highlight Search term=reverse ctermbg=24 guibg=#005F87
+highlight SpellRare term=reverse ctermbg=24 guibg=#005F87
+highlight DiffAdd term=reverse ctermbg=24 guibg=#005F87
+highlight GoDebugBreakpoint term=reverse ctermfg=0 ctermbg=88 guifg=Black guibg=#63001C
+highlight GoDebugCurrent term=reverse ctermbg=24 guibg=#005F87
+
 " air-line
+let g:airline_theme='minimalist'
 let g:airline_solarized_bg='dark'
 
 let g:airline_powerline_fonts = 1
@@ -269,34 +262,6 @@ if has("cscope")
 	" show msg when any other cscope db added
 	set cscopeverbose
 endif
-
-" check https://github.com/chazy/cscope_maps/blob/master/plugin/cscope_maps.vim for mappings
-"nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-"nmap <C-\>d :cs find d<C-R>=expand("<cword>")<CR><CR>
-
-"nmap <C-]>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-"nmap <C-]>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-"nmap <C-]>d :scs find d <C-R>=expand("<cword>")<CR><CR>
-
-"nmap <C-]><C-]>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]><C-]>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]><C-]>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]><C-]>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]><C-]>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-]><C-]>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
-"nmap <C-]><C-]>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-"nmap <C-]><C-]>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 " ag
 if executable('ag')
