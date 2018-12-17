@@ -54,6 +54,10 @@ then
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
+#install zsh-autosuggestions
+echo "installing zsh-autosuggestions"
+sh -c "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
 # install fzf
 if [ ! -d $HOME/.fzf ]
 then
@@ -74,8 +78,9 @@ cp oh-my-zsh/themes/gitster.zsh-theme $HOME/.oh-my-zsh/themes/
 # install bin files
 echo "install files to bin folder"
 mkdir -p $HOME/.bin
-ln -sf ${PWD}/bin/cs $HOME/.bin/cs
-ln -sf ${PWD}/bin/wea $HOME/.bin/wea
+#ln -sf ${PWD}/bin/cs $HOME/.bin/cs
+#ln -sf ${PWD}/bin/wea $HOME/.bin/wea
 curl -o ~/.bin/tldr https://raw.githubusercontent.com/raylee/tldr/master/tldr
+chomd +x ~/.bin/tldr
 curl https://cht.sh/:cht.sh > ~/.bin/cht
 chmod +x ~/.bin/cht

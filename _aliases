@@ -4,6 +4,20 @@ alias ctags="ctags -R --exclude=.git"
 # print in human readable form
 alias df="df -h"
 
-# shorthand for vim
-alias v="vim"
+ # for ctags
+alias ctags="`brew --prefix`/bin/ctags"
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias dl="cd ~/Downloads"
+alias g="git"
+alias h="history"
+
+# untar
+alias untar='tar xvf'
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'

@@ -1,0 +1,75 @@
+# `v` with no arguments opens the current directory in Vim, otherwise opens the
+# given location
+v() {
+	if [ $# -eq 0 ]; then
+		vim .
+	else
+		vim "$@"
+	fi
+}
+
+# Simple calculator
+calc() {
+	local result=""
+	result="$(printf "scale=10;%s\\n" "$*" | bc --mathlib | tr -d '\\\n')"
+	#						└─ default (when `--mathlib` is used) is 20
+
+	if [[ "$result" == *.* ]]; then
+		# improve the output for decimal numbers
+		# add "0" for cases like ".5"
+		# add "0" for cases like "-.5"
+		# remove trailing zeros
+		printf "%s" "$result" |
+			sed -e 's/^\./0./'  \
+			-e 's/^-\./-0./' \
+			-e 's/0*$//;s/\.$//'
+	else
+		printf "%s" "$result"
+	fi
+	printf "\\n"
+}
+
+# Create a new directory and enter it
+mkd() {
+	mkdir -p "$@"
+	cd "$@" || exit
+}
+
+# Determine size of a file or total size of a directory
+fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh
+	else
+		local arg=-sh
+	fi
+	# shellcheck disable=SC2199
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@"
+	else
+		du $arg -- .[^.]* *
+	fi
+}
+
+# Show the weather or the moon
+wea() {
+	if [[ "$@" == "moon" ]]
+	then
+		curl wttr.in/moon
+	else
+		if [[ "$#" -eq 1 ]]
+		then
+			curl wttr.in/~$1
+		else
+			curl wttr.in/lehi,utah
+		fi
+	fi
+}
+
+# analyze source (as)
+# run ctags and cscope for c/c++
+cs() {
+	rm -rf cscope.files cscope.in.out cscope.out cscope.po.out tags
+	find . -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" -name "*.cc" > cscope.files
+	cscope -q -R -b -i cscope.files
+	ctags .
+}

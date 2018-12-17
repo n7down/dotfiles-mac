@@ -1,2 +1,0 @@
-# for ctags
-alias ctags="`brew --prefix`/bin/ctags"

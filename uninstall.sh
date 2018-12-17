@@ -2,5 +2,7 @@
 
 for i in _*
 do
-	rm -fr "${HOME}/${i/_/.}"
+	rm -rf "${HOME}/${i/_/.}"
 done
+
+rm -rf ${HOME}/.bin
